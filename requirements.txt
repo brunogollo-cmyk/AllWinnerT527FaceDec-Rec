@@ -1,0 +1,5 @@
+# opencv-contrib is required: the face DNN classes (FaceDetectorYN,
+# FaceRecognizerSF) are only in the contrib build.
+opencv-contrib-python-headless>=4.10
+numpy
+pyyaml

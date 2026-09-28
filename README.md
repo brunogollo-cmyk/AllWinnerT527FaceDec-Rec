@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/32713487/README.md)
 # facegate
 
 Real-time face detection and recognition on an Orange Pi 4A (Allwinner sun55iw3,
