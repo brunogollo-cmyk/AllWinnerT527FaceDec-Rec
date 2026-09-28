@@ -1,0 +1,95 @@
+# facegate configuration
+# Every value here is optional; anything omitted falls back to the built-in default.
+
+camera:
+  # null -> resolve the camera automatically by USB id below (survives reboots,
+  # when the /dev/videoN number usually changes)
+  device: null
+  usb_id: "1b3f:2002"
+  width: 640
+  height: 480
+  fps: 30
+  # MJPG 640x480 decodes far cheaper than the camera's 1080p default.
+  # Set to "YUYV" if you would rather skip JPEG decode entirely.
+  fourcc: "MJPG"
+  reconnect_attempts: 5
+  reconnect_delay: 2.0
+
+detector:
+  model: "models/yunet.onnx"
+  # Smaller is faster: 256 runs ~20ms on this board, 320 ~29ms, 512 ~81ms.
+  input_size: 256
+  score_threshold: 0.7
+  nms_threshold: 0.3
+  top_k: 5000
+
+recognizer:
+  model: "models/face_recognition_sface_2021dec.onnx"
+  antispoof_model: "models/antispoof_minifas.onnx"
+  facedb: "data/facedb.json"
+  # Run the embedding on the T527 NPU (2 TOPS VeriSilicon VIP9000) instead of
+  # the CPU. The graph is the same SFace network converted to INT8 and compiled
+  # for VIP9000NANOSI_PLUS_PID0X10000016, which is this board's chip id.
+  # Measured on this board: ~15 ms per embedding on the NPU vs ~68 ms on the
+  # CPU, and cosine agreement between the two is 0.99 over real camera crops,
+  # so the enrolled database stays valid either way.
+  # If the graph or the VIPLite runtime is missing, facegate logs a warning and
+  # keeps working on the CPU - nothing breaks.
+  use_npu: true
+  npu_model: "models/npu/sface_int8.nb"
+  # Location of the Allwinner VIPLite v1.13 runtime (libVIPlite.so /
+  # libVIPuser.so). Produced from the public SDK, see tools/README-npu.md.
+  viplite_dir: "/home/orangepi/npu_vendor/ai-sdk/viplite-tina/lib/glibc-gcc10_2_0/v1.13"
+  # Cosine similarity required to accept a face. Same-person scores measured
+  # ~0.82-0.88 on this camera. Lower = stricter. Raise if strangers get in.
+  match_threshold: 0.5
+  # Faces smaller than this are ignored rather than matched - a too-small face
+  # gives an unreliable embedding, which is the main way a false accept happens.
+  min_face_size: 60
+  # Embedding reuse. SFace is ~68ms of a ~100ms frame, and a face standing at
+  # the door is re-embedded every single frame even though nothing changed.
+  # When a tracked face passes both gates below, the cached embedding is used
+  # and that 68ms is skipped. Set reuse_window to 0 to disable and get the
+  # original behaviour back.
+  reuse_window: 1.5
+  # New box must overlap the cached one by at least this much (0-1).
+  reuse_min_iou: 0.5
+  # 16x16 greyscale appearance of the aligned crop must match the cached one by
+  # at least this much. This is the gate that stops a *different* person
+  # standing in the same spot from inheriting the first person's identity.
+  # Measured on this board: the same person scores 0.95 (8px shift) to 0.99
+  # (exposure drift, sensor noise), while a hard negative scores ~0.78. 0.9 sits
+  # in that gap. Lower it and you risk handing one person another's identity -
+  # note a false reuse grants access, while a false miss only costs 68ms of
+  # re-embedding, so this should stay biased high.
+  reuse_min_appearance: 0.9
+
+access:
+  # true  = an unrecognised face is DENY (safe default)
+  # false = log it as a grant anyway (not recommended for real access control)
+  require_match: true
+  # true  = a recognised face must also pass the anti-spoof model before GRANT
+  require_liveness: true
+  # Probability at or above which MiniFAS calls a face live. See README - tune
+  # this against real print/screen tests before trusting it.
+  # Measured with a genuine face at the camera: 0.24-0.99, mean 0.79. At 0.5
+  # that produced a DENY_SPOOF on ~6% of frames of the same real person,
+  # which is what prompted lowering it. A false DENY_SPOOF now costs a person
+  # a second attempt, so 0.3 is the safer side to err on while the model
+  # remains unvalidated against real attacks.
+  liveness_threshold: 0.3
+  # Seconds before the same decision for the same person is logged again.
+  event_cooldown: 5.0
+  events: "data/events.jsonl"
+  # Optional: POST each access event as JSON to this URL.
+  webhook: null
+
+web:
+  enabled: true
+  host: "0.0.0.0"
+  port: 8080
+  quality: 70
+
+display:
+  # true opens an OpenCV window - only works when a desktop session is running.
+  show: false

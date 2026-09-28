@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>facegate</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+  <h1>facegate</h1>
+  <div class="statline" id="statline">connecting…</div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="live">Live</button>
+  <button class="tab" data-tab="people">People</button>
+  <button class="tab" data-tab="events">Events</button>
+  <button class="tab" data-tab="settings">Settings</button>
+</nav>
+
+<main>
+
+  <!-- ------------------------------------------------------- live -->
+  <section class="panel active" id="panel-live">
+    <div class="video-wrap">
+      <img id="stream" src="/stream" alt="live camera">
+      <div class="video-off" id="videoOff" hidden>
+        <p>Stream paused</p>
+        <button id="resume">Resume</button>
+      </div>
+    </div>
+    <div class="row">
+      <button id="snap">Save snapshot</button>
+      <button id="toggleStream" class="secondary">Pause view</button>
+      <span class="hint">Recognition runs continuously in the background.</span>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------- people -->
+  <section class="panel" id="panel-people">
+    <div class="card">
+      <h2>Enrolled people</h2>
+      <table id="peopleTable">
+        <thead><tr><th>Name</th><th>Embeddings</th><th>Self-similarity</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="empty" id="peopleEmpty">
+        Nobody enrolled yet. Add someone below — until you do, every face is denied.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Add a person</h2>
+      <div class="capture-stage">
+        <div class="video-wrap preview">
+          <img id="previewStream" alt="live camera preview">
+        </div>
+        <div class="capture-side">
+          <div class="row">
+            <input id="personName" type="text" placeholder="Name, e.g. Alice"
+                   autocomplete="off" spellcheck="false">
+            <button id="captureBtn">Capture photo</button>
+            <button id="clearCaptures" class="secondary" hidden>Clear</button>
+          </div>
+          <p class="hint">
+            Frame yourself in the preview, then press Capture. The green box marks
+            the face that will be enrolled — if it is missing, move closer or
+            improve the light. Take three or more photos from slightly different
+            angles; it makes recognition more reliable.
+          </p>
+          <p class="hint" id="captureHint"></p>
+        </div>
+      </div>
+      <div id="captures" class="captures"></div>
+      <div class="row">
+        <button id="enrollBtn" class="primary" disabled>Enrol</button>
+        <span id="enrollMsg" class="msg"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------- events -->
+  <section class="panel" id="panel-events">
+    <div class="card">
+      <div class="row spread">
+        <h2>Access log</h2>
+        <div class="row">
+          <label class="inline">Show
+            <select id="eventFilter">
+              <option value="">all</option>
+              <option value="GRANT">granted</option>
+              <option value="DENY">denied</option>
+              <option value="DENY_SPOOF">spoof</option>
+            </select>
+          </label>
+          <button id="clearEvents" class="secondary danger">Clear log</button>
+        </div>
+      </div>
+      <table id="eventsTable">
+        <thead><tr><th>Time</th><th>Decision</th><th>Person</th><th>Match</th><th>Live</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="empty" id="eventsEmpty">No events recorded yet.</p>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------- settings -->
+  <section class="panel" id="panel-settings">
+    <div class="card">
+      <h2>Settings</h2>
+      <p class="hint" id="saveState"></p>
+      <form id="settingsForm">
+        <fieldset>
+          <legend>Access control</legend>
+
+          <div class="field">
+            <label for="require_match">Require a known face</label>
+            <input type="checkbox" id="require_match" name="access.require_match">
+            <p class="hint">
+              On (recommended): an unrecognised face is denied.
+              Off: unknown faces are granted anyway.
+            </p>
+          </div>
+
+          <div class="field">
+            <label for="require_liveness">Require liveness (anti-spoofing)</label>
+            <input type="checkbox" id="require_liveness" name="access.require_liveness">
+            <p class="hint">
+              Checks each recognised face is a live person, not a photo or screen.
+              Untested against real spoofs on this board — see the README before
+              relying on it.
+            </p>
+          </div>
+
+          <div class="field">
+            <label for="liveness_threshold">Liveness threshold</label>
+            <input type="number" id="liveness_threshold" name="access.liveness_threshold"
+                   step="0.05" min="0" max="1">
+            <p class="hint">0–1. Genuine faces measured 0.50–0.90 on this board.</p>
+          </div>
+
+          <div class="field">
+            <label for="match_threshold">Face match threshold</label>
+            <input type="number" id="match_threshold" name="recognizer.match_threshold"
+                   step="0.05" min="0" max="1.5">
+            <p class="hint">
+              0–1.5. Enrolled people score 0.82–0.93; strangers score near 0.
+              Raise to be stricter, lower if legitimate people are being denied.
+            </p>
+          </div>
+
+          <div class="field">
+            <label for="min_face_size">Minimum face size (px)</label>
+            <input type="number" id="min_face_size" name="recognizer.min_face_size"
+                   step="5" min="10" max="1000">
+            <p class="hint">
+              Faces smaller than this are ignored, not matched. Higher is safer but
+              means people must stand closer.
+            </p>
+          </div>
+
+          <div class="field">
+            <label for="event_cooldown">Repeat log cooldown (s)</label>
+            <input type="number" id="event_cooldown" name="access.event_cooldown"
+                   step="1" min="0" max="3600">
+            <p class="hint">How long before the same decision is logged again.</p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Detection</legend>
+
+          <div class="field">
+            <label for="input_size">Detector input size</label>
+            <input type="number" id="input_size" name="detector.input_size"
+                   step="32" min="64" max="960">
+            <p class="hint">
+              The main speed lever: 224 ≈ 14 ms, 256 ≈ 19 ms, 320 ≈ 28 ms.
+              <strong>Needs a restart to take effect.</strong>
+            </p>
+          </div>
+
+          <div class="field">
+            <label for="score_threshold">Detector confidence threshold</label>
+            <input type="number" id="score_threshold" name="detector.score_threshold"
+                   step="0.05" min="0" max="1">
+            <p class="hint">Higher ignores low-confidence detections.</p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Camera</legend>
+          <div class="field inline-fields">
+            <span>
+              <label for="camera_width">Width</label>
+              <input type="number" id="camera_width" name="camera.width" min="160" max="1920">
+            </span>
+            <span>
+              <label for="camera_height">Height</label>
+              <input type="number" id="camera_height" name="camera.height" min="120" max="1080">
+            </span>
+            <span>
+              <label for="camera_fps">FPS</label>
+              <input type="number" id="camera_fps" name="camera.fps" min="1" max="60">
+            </span>
+            <span>
+              <label for="camera_fourcc">Format</label>
+              <select id="camera_fourcc" name="camera.fourcc">
+                <option value="MJPG">MJPG</option>
+                <option value="YUYV">YUYV</option>
+              </select>
+            </span>
+          </div>
+          <p class="hint">
+            Camera settings are applied on the next start. This webcam only offers
+            MJPG at 1280×720 and 1920×1080, so smaller MJPG sizes are ignored by the
+            driver.
+          </p>
+        </fieldset>
+
+        <div class="row">
+          <button type="submit" class="primary">Save settings</button>
+          <span id="settingsMsg" class="msg"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<div id="toast" hidden></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

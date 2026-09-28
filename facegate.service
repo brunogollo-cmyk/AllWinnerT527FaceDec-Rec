@@ -1,0 +1,23 @@
+[Unit]
+Description=facegate - face detection and recognition
+After=graphical.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/orangepi/facegate
+ExecStart=/home/orangepi/facegate/.venv/bin/python /home/orangepi/facegate/run.py
+Restart=always
+RestartSec=5
+# The camera device can take a moment to enumerate after boot.
+ExecStartPre=/bin/sleep 10
+
+# Uncomment if the user running this unit is not already in the video group.
+# User=orangepi
+# SupplementaryGroups=video
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
