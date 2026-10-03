@@ -1716,3 +1716,53 @@
 {"ts": "2026-09-28T00:19:02+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.5821, "box": [278, 164, 123, 130], "detect_score": 0.884, "liveness": 0.2252}
 {"ts": "2026-09-28T00:19:05+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.5821, "box": [277, 164, 123, 130], "detect_score": 0.889, "liveness": 0.8366}
 {"ts": "2026-09-28T00:19:07+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.627, "box": [278, 164, 121, 128], "detect_score": 0.888, "liveness": 0.2095}
+{"ts": "2026-10-03T20:34:13+0000", "decision": "DENY", "name": null, "similarity": 0.4109, "box": [268, 162, 119, 116], "detect_score": 0.864}
+{"ts": "2026-10-03T20:34:14+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.5952, "box": [266, 146, 123, 126], "detect_score": 0.888, "liveness": 0.7014}
+{"ts": "2026-10-03T20:34:16+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.6169, "box": [232, 156, 119, 126], "detect_score": 0.869, "liveness": 0.1116}
+{"ts": "2026-10-03T20:34:18+0000", "decision": "GRANT", "name": "Clara Alves Gollo", "similarity": 0.5213, "box": [512, 258, 70, 80], "detect_score": 0.802, "liveness": 0.7743}
+{"ts": "2026-10-03T20:34:19+0000", "decision": "DENY", "name": null, "similarity": 0.4803, "box": [235, 167, 103, 114], "detect_score": 0.854}
+{"ts": "2026-10-03T20:34:19+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.6131, "box": [224, 153, 107, 117], "detect_score": 0.89, "liveness": 0.385}
+{"ts": "2026-10-03T20:34:23+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.6201, "box": [233, 158, 106, 118], "detect_score": 0.864, "liveness": 0.2413}
+{"ts": "2026-10-03T20:34:23+0000", "decision": "DENY_SPOOF", "name": "Clara Alves Gollo", "similarity": 0.5511, "box": [516, 286, 61, 66], "detect_score": 0.91, "liveness": 0.1522}
+{"ts": "2026-10-03T20:34:23+0000", "decision": "GRANT", "name": "Clara Alves Gollo", "similarity": 0.6169, "box": [489, 292, 70, 77], "detect_score": 0.897, "liveness": 0.8549}
+{"ts": "2026-10-03T20:34:24+0000", "decision": "DENY", "name": null, "similarity": 0.0, "box": [499, 281, 58, 64], "detect_score": 0.819}
+{"ts": "2026-10-03T20:34:26+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.6158, "box": [241, 149, 111, 121], "detect_score": 0.881, "liveness": 0.558}
+{"ts": "2026-10-03T20:34:30+0000", "decision": "DENY", "name": null, "similarity": 0.3188, "box": [289, 179, 84, 99], "detect_score": 0.79}
+{"ts": "2026-10-03T20:34:32+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.5538, "box": [282, 153, 116, 132], "detect_score": 0.894, "liveness": 0.2611}
+{"ts": "2026-10-03T20:34:32+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.5538, "box": [263, 146, 120, 126], "detect_score": 0.876, "liveness": 0.8909}
+{"ts": "2026-10-03T20:34:36+0000", "decision": "DENY", "name": null, "similarity": 0.0, "box": [481, 264, 45, 52], "detect_score": 0.78}
+{"ts": "2026-10-03T20:34:37+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.5806, "box": [248, 152, 126, 132], "detect_score": 0.914, "liveness": 0.7932}
+{"ts": "2026-10-03T20:34:41+0000", "decision": "DENY", "name": null, "similarity": 0.34, "box": [301, 169, 100, 123], "detect_score": 0.816}
+{"ts": "2026-10-03T20:34:46+0000", "decision": "DENY", "name": null, "similarity": 0.3827, "box": [272, 174, 99, 120], "detect_score": 0.877}
+{"ts": "2026-10-03T20:34:51+0000", "decision": "DENY", "name": null, "similarity": 0.0, "box": [493, 283, 37, 38], "detect_score": 0.743}
+{"ts": "2026-10-03T20:34:56+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.5187, "box": [267, 170, 111, 116], "detect_score": 0.861, "liveness": 0.5557}
+{"ts": "2026-10-03T20:34:56+0000", "decision": "DENY", "name": null, "similarity": 0.4947, "box": [459, 278, 60, 61], "detect_score": 0.862}
+{"ts": "2026-10-03T20:34:57+0000", "decision": "DENY_SPOOF", "name": "Clara Alves Gollo", "similarity": 0.5895, "box": [526, 286, 61, 65], "detect_score": 0.896, "liveness": 0.1638}
+{"ts": "2026-10-03T20:35:00+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.5354, "box": [241, 178, 118, 123], "detect_score": 0.891, "liveness": 0.2954}
+{"ts": "2026-10-03T20:35:01+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.5341, "box": [251, 187, 97, 105], "detect_score": 0.871, "liveness": 0.6538}
+{"ts": "2026-10-03T20:35:02+0000", "decision": "DENY", "name": null, "similarity": 0.32, "box": [254, 187, 95, 100], "detect_score": 0.87}
+{"ts": "2026-10-03T20:35:06+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.5451, "box": [246, 187, 98, 103], "detect_score": 0.881, "liveness": 0.257}
+{"ts": "2026-10-03T20:35:06+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.517, "box": [231, 189, 104, 112], "detect_score": 0.881, "liveness": 0.4338}
+{"ts": "2026-10-03T20:35:07+0000", "decision": "DENY", "name": null, "similarity": 0.4756, "box": [237, 189, 101, 108], "detect_score": 0.859}
+{"ts": "2026-10-03T20:35:12+0000", "decision": "DENY", "name": null, "similarity": 0.4361, "box": [248, 181, 107, 115], "detect_score": 0.849}
+{"ts": "2026-10-03T20:35:38+0000", "decision": "DENY", "name": null, "similarity": 0.0, "box": [393, 1, 75, 57], "detect_score": 0.732}
+{"ts": "2026-10-03T20:35:57+0000", "decision": "DENY", "name": null, "similarity": 0.0965, "box": [298, 28, 282, 335], "detect_score": 0.764}
+{"ts": "2026-10-03T20:35:58+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.6098, "box": [224, 150, 117, 122], "detect_score": 0.885, "liveness": 0.3665}
+{"ts": "2026-10-03T20:35:58+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.5516, "box": [206, 153, 117, 127], "detect_score": 0.881, "liveness": 0.1687}
+{"ts": "2026-10-03T20:36:03+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.6176, "box": [270, 129, 131, 153], "detect_score": 0.878, "liveness": 0.1081}
+{"ts": "2026-10-03T20:36:03+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.6176, "box": [271, 129, 128, 152], "detect_score": 0.877, "liveness": 0.3198}
+{"ts": "2026-10-03T20:36:04+0000", "decision": "DENY", "name": null, "similarity": 0.4455, "box": [267, 145, 121, 132], "detect_score": 0.862}
+{"ts": "2026-10-03T20:36:08+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.5843, "box": [258, 132, 129, 149], "detect_score": 0.872, "liveness": 0.0596}
+{"ts": "2026-10-03T20:36:11+0000", "decision": "DENY", "name": null, "similarity": 0.2874, "box": [309, 174, 81, 101], "detect_score": 0.714}
+{"ts": "2026-10-03T20:36:16+0000", "decision": "DENY", "name": null, "similarity": 0.0, "box": [465, 275, 52, 55], "detect_score": 0.802}
+{"ts": "2026-10-03T20:36:21+0000", "decision": "DENY", "name": null, "similarity": 0.0, "box": [524, 249, 58, 64], "detect_score": 0.794}
+{"ts": "2026-10-03T20:36:26+0000", "decision": "DENY", "name": null, "similarity": 0.0, "box": [487, 273, 52, 53], "detect_score": 0.846}
+{"ts": "2026-10-03T20:36:31+0000", "decision": "DENY", "name": null, "similarity": 0.0, "box": [444, 282, 50, 50], "detect_score": 0.832}
+{"ts": "2026-10-03T20:36:34+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.5032, "box": [234, 182, 105, 107], "detect_score": 0.872, "liveness": 0.1564}
+{"ts": "2026-10-03T20:36:34+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.5032, "box": [240, 171, 109, 114], "detect_score": 0.883, "liveness": 0.3354}
+{"ts": "2026-10-03T20:36:37+0000", "decision": "DENY", "name": null, "similarity": 0.4979, "box": [289, 153, 125, 143], "detect_score": 0.865}
+{"ts": "2026-10-03T20:36:39+0000", "decision": "DENY_SPOOF", "name": "Bruno Lyra Gollo", "similarity": 0.6214, "box": [263, 151, 127, 134], "detect_score": 0.869, "liveness": 0.2728}
+{"ts": "2026-10-03T20:36:40+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.6214, "box": [262, 148, 125, 134], "detect_score": 0.892, "liveness": 0.5281}
+{"ts": "2026-10-03T20:36:45+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.6313, "box": [250, 139, 126, 142], "detect_score": 0.905, "liveness": 0.8836}
+{"ts": "2026-10-03T20:36:50+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.5952, "box": [256, 140, 122, 132], "detect_score": 0.908, "liveness": 0.9312}
+{"ts": "2026-10-03T20:36:55+0000", "decision": "GRANT", "name": "Bruno Lyra Gollo", "similarity": 0.5952, "box": [256, 136, 123, 144], "detect_score": 0.897, "liveness": 0.9007}
